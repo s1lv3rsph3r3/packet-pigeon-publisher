@@ -1,0 +1,44 @@
+{
+  "name": "packet-pigeon-publisher",
+  "version": "1.0.0",
+  "description": "A lightweight API for receiving message requests.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@s1lv3rsph3r3/metropolitan": "^1.0.35",
+    "body-parser": "^1.19.0",
+    "cli-table3": "^0.6.0",
+    "colors": "^1.4.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-markdown": "^2.2.1",
+    "express": "^4.17.1",
+    "express-list-endpoints": "^6.0.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "node-schedule": "^2.0.0",
+    "split": "^1.0.1",
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "publisher-db-migrate": "cd application-modules/publisher && node ../../node_modules/db-migrate/bin/db-migrate --migrations-dir ./db/mysql/migrations --config ./config/database.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1lv3rsph3r3/packet-pigeon-publisher.git"
+  },
+  "author": "Timothy Rawlins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s1lv3rsph3r3/packet-pigeon-publisher/issues"
+  },
+  "homepage": "https://github.com/s1lv3rsph3r3/packet-pigeon-publisher#readme"
+}
