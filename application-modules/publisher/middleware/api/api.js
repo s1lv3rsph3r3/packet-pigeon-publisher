@@ -1,8 +1,15 @@
 const logger = require('../../../../logger');
 
+/**
+ * Create API specific middleware within this module
+ * All middleware defined and registered will apply to
+ * Api.get(), Api.post() ... etc endpoints.
+ */
 class ApiMiddlewareProvider {
   constructor() {
+    const { name } = ApiMiddlewareProvider;
     this.exampleFunction = this.exampleFunction.bind(this);
+    this.clazzName = name;
   }
 
   /**
@@ -14,10 +21,10 @@ class ApiMiddlewareProvider {
    */
   exampleFunction(req, res, next) {
     logger.info(
-      `${ApiMiddlewareProvider.name}@${this.exampleFunction.name}`,
+      `${this.clazzName}@${this.exampleFunction.name}`,
       {
         uuid: req.UUID,
-        clazz: ApiMiddlewareProvider.name,
+        clazz: this.clazzName,
         fn: this.exampleFunction.name,
       },
     );
