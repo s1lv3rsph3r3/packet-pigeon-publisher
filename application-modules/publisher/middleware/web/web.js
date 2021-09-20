@@ -3,7 +3,7 @@ const logger = require('../../../../logger');
 /**
  * Create Web specific middleware within this module
  * All middleware defined and registered will apply to
- * Web.get(), Web.post() ... etc endpoints.
+ * Route.get(), Route.post() ... etc endpoints.
  */
 class WebMiddlewareProvider {
   constructor() {
