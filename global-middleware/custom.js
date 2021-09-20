@@ -15,7 +15,9 @@ const logger = require('../logger');
 
 class CustomMiddlewareProvider {
   constructor() {
+    const { name } = CustomMiddlewareProvider;
     this.setUniqueReqId = this.setUniqueReqId.bind(this);
+    this.clazzName = name;
   }
 
   /**
@@ -30,10 +32,10 @@ class CustomMiddlewareProvider {
   setUniqueReqId(req, res, next) {
     req.UUID = uuidv4();
     logger.info(
-      `${CustomMiddlewareProvider.name}@${this.setUniqueReqId.name}`,
+      `${this.clazzName}@${this.setUniqueReqId.name}`,
       {
         uuid: req.UUID,
-        clazz: CustomMiddlewareProvider.name,
+        clazz: this.clazzName,
         fn: this.setUniqueReqId.name,
       },
     );
