@@ -1,8 +1,15 @@
 const logger = require('../../../../logger');
 
+/**
+ * Create Web specific middleware within this module
+ * All middleware defined and registered will apply to
+ * Web.get(), Web.post() ... etc endpoints.
+ */
 class WebMiddlewareProvider {
   constructor() {
+    const { name } = WebMiddlewareProvider;
     this.exampleFunction = this.exampleFunction.bind(this);
+    this.clazzName = name;
   }
 
   /**
@@ -14,10 +21,10 @@ class WebMiddlewareProvider {
    */
   exampleFunction(req, res, next) {
     logger.info(
-      `${WebMiddlewareProvider.name}@${this.exampleFunction.name}`,
+      `${this.clazzName}@${this.exampleFunction.name}`,
       {
         uuid: req.UUID,
-        clazz: WebMiddlewareProvider.name,
+        clazz: this.clazzName,
         fn: this.exampleFunction.name,
       },
     );
