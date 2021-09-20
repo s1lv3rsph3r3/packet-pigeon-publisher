@@ -1,5 +1,10 @@
 const logger = require('../../../../../logger');
 
+/**
+ * Create API VERB specific middleware within this module
+ * All middleware defined and registered will apply to
+ * Api.delete() ONLY endpoints.
+ */
 class DeleteMiddlewareProvider {
   constructor() {
     const { name } = DeleteMiddlewareProvider;
