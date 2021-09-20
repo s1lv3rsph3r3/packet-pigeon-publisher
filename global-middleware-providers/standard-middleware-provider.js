@@ -6,13 +6,29 @@
  * they are declared in the array.
  */
 const bodyParser = require('body-parser');
+const logger = require('../logger');
 
-const standardMiddleware = () => [
-  bodyParser.json(),
-  bodyParser.urlencoded({ extended: true }),
-  // cors(),
-  // helmet(),
-  // etc.. [add external middleware libraries here]
-];
+class StandardMiddlewareProvider {
+  constructor() {
+    this.standardMiddleware = this.standardMiddleware.bind(this);
+  }
 
-module.exports = { standardMiddleware };
+  standardMiddleware() {
+    logger.info(
+      `${StandardMiddlewareProvider.name}@${this.standardMiddleware.name}`,
+      {
+        clazz: StandardMiddlewareProvider.name,
+        fn: this.standardMiddleware.name,
+      },
+    );
+    return [
+      bodyParser.json(),
+      bodyParser.urlencoded({ extended: true }),
+      // cors(),
+      // helmet(),
+      // etc.. [add external middleware libraries here]
+    ];
+  }
+}
+
+module.exports = new StandardMiddlewareProvider();
