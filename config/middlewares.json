@@ -1,14 +1,14 @@
 {
   "app" : {
-    "standard-middleware-provider" : [
+    "standard" : [
       "standardMiddleware"
     ]
   },
   "custom": {},
-  "globDir" : "./global-middleware-providers",
+  "globDir" : "./global-middleware",
   "cityConfig": "{{moduleDir}}/{{moduleName}}/config/middleware.json",
-  "moduleDir" : "{{moduleDir}}/{{moduleName}}/middleware-providers/",
-  "typeDir" : "{{moduleDir}}/{{moduleName}}/middleware-providers/{{type}}/",
-  "verbDir": "{{moduleDir}}/{{moduleName}}/middleware-providers/{{type}}/verbs/",
-  "customDir": "{{moduleDir}}/{{moduleName}}/middleware-providers/custom/"
+  "moduleDir" : "{{moduleDir}}/{{moduleName}}/middleware/",
+  "typeDir" : "{{moduleDir}}/{{moduleName}}/middleware/{{type}}/",
+  "verbDir": "{{moduleDir}}/{{moduleName}}/middleware/{{type}}/verbs/",
+  "customDir": "{{moduleDir}}/{{moduleName}}/middleware/custom/"
 }

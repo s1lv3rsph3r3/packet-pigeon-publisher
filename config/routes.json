@@ -1,5 +1,5 @@
 {
-  "baseDir" : "{{moduleDir}}/{{moduleName}}/routing-providers/",
+  "baseDir" : "{{moduleDir}}/{{moduleName}}/endpoints/",
   "routes" : "web.js",
   "api" : {
     "filename" : "api.js",
