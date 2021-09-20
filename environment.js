@@ -8,6 +8,7 @@ module.exports = (function start() {
     // Server settings
     appPort: process.env.APP_PORT,
     appUrl: process.env.APP_URL,
+    appDebug: process.env.APP_DEBUG,
   };
   const values = () => kv;
   return {
