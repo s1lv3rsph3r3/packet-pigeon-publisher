@@ -6,7 +6,7 @@ class WebMiddlewareProvider {
   }
 
   /**
-   * An example function. API specific middleware can
+   * An example function. Web specific middleware can
    * be added here and registered in the module middleware config.
    * @param req
    * @param res
