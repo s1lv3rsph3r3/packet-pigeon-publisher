@@ -3,6 +3,7 @@ const listEndpoints = require('express-list-endpoints');
 const Table = require('cli-table3');
 const colors = require('colors');
 const expressApp = require('../app');
+const { formatFunctionName } = require('./format-utility');
 
 const printEndpoints = () => {
   const endpoints = listEndpoints(expressApp);
@@ -35,7 +36,8 @@ const printEndpoints = () => {
           row[i] = { content: colors.red('X'), hAlign: 'center' };
         }
       } else {
-        row[i] = { content: colors.blue(endpoints[index].middlewares), hAlign: 'center' };
+        const middlewares = (endpoints[index]).middlewares.map((v) => formatFunctionName(v));
+        row[i] = { content: colors.blue(middlewares.toString()), hAlign: 'center' };
       }
     }
     table.push(row);
