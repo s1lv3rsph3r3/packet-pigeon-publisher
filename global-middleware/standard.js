@@ -10,14 +10,16 @@ const logger = require('../logger');
 
 class StandardMiddlewareProvider {
   constructor() {
+    const {name} = StandardMiddlewareProvider;
     this.standardMiddleware = this.standardMiddleware.bind(this);
+    this.clazzName = name;
   }
 
   standardMiddleware() {
     logger.info(
-      `${StandardMiddlewareProvider.name}@${this.standardMiddleware.name}`,
+      `${this.clazzName}@${this.standardMiddleware.name}`,
       {
-        clazz: StandardMiddlewareProvider.name,
+        clazz: this.clazzName,
         fn: this.standardMiddleware.name,
       },
     );
