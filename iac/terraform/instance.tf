@@ -16,6 +16,14 @@ resource "digitalocean_droplet" "instance" {
   }
   provisioner "remote-exec" {
     inline = [
+      "echo Hello!"
+    ]
+  }
+  provisioner "local-exec" {
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' --private-key ${var.pvt_key_file} ../playbooks/unattended-upgrades.yml"
+  }
+  provisioner "remote-exec" {
+    inline = [
       "export PATH=$PATH:/usr/bin",
       # install nginx
       "sudo apt-get update",
