@@ -7,6 +7,7 @@
  */
 const bodyParser = require('body-parser');
 const logger = require('../logger');
+const {formatFunctionName} = require('../utility/format-utility');
 
 class StandardMiddlewareProvider {
   constructor() {
@@ -17,10 +18,10 @@ class StandardMiddlewareProvider {
 
   standardMiddleware() {
     logger.info(
-      `${this.clazzName}@${this.standardMiddleware.name}`,
+      `${this.clazzName}@${formatFunctionName(this.standardMiddleware.name)}`,
       {
         clazz: this.clazzName,
-        fn: this.standardMiddleware.name,
+        fn: formatFunctionName(this.standardMiddleware.name),
       },
     );
     return [
