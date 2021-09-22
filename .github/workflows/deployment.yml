@@ -43,6 +43,13 @@ jobs:
       - name: Verify Terraform version
         run: terraform --version
 
+      - name: Configure AWS credentials for profile=default
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Set env
         run: echo "UUID=$(uuidgen)" >> $GITHUB_ENV
 
