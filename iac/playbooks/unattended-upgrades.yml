@@ -2,7 +2,7 @@
 - hosts: all
   become: true
 
-tasks:
+  tasks:
   - name: Disable timers for unattended upgrade, so that none will be triggered by the `date -s` call.
     command: "systemctl disable --now {{item}}"
     with_items:
