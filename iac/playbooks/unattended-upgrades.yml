@@ -2,27 +2,28 @@
 - hosts: all
   become: true
 
-- name: Disable timers for unattended upgrade, so that none will be triggered by the `date -s` call.
-  command: "systemctl disable --now {{item}}"
-  with_items:
-    - 'apt-daily.timer'
-    - 'apt-daily-upgrade.timer'
+tasks:
+  - name: Disable timers for unattended upgrade, so that none will be triggered by the `date -s` call.
+    command: "systemctl disable --now {{item}}"
+    with_items:
+      - 'apt-daily.timer'
+      - 'apt-daily-upgrade.timer'
 
-- name: Reload systemctl daemon to apply the new changes
-  command: "systemctl daemon-reload"
+  - name: Reload systemctl daemon to apply the new changes
+    command: "systemctl daemon-reload"
 
-# Syncing time is only relevant for testing, because of the VM's outdated date.
-#- name: Sync time
-#  raw: date -s "{{ lookup('pipe', 'date') }}"
+  # Syncing time is only relevant for testing, because of the VM's outdated date.
+  #- name: Sync time
+  #  raw: date -s "{{ lookup('pipe', 'date') }}"
 
-- name: Wait for any possibly running unattended upgrade to finish
-  command: "systemd-run --property=\"After=apt-daily.service apt-daily-upgrade.service\" --wait /bin/true"
+  - name: Wait for any possibly running unattended upgrade to finish
+    command: "systemd-run --property=\"After=apt-daily.service apt-daily-upgrade.service\" --wait /bin/true"
 
-- name: Purge unattended upgrades
-  command: "apt-get -y purge unattended-upgrades"
+  - name: Purge unattended upgrades
+    command: "apt-get -y purge unattended-upgrades"
 
-- name: Update apt cache
-  command: "apt-get -y update"
+  - name: Update apt cache
+    command: "apt-get -y update"
 
-#- name: If needed, install Python
-#  raw: test -e /usr/bin/python || apt-get -y install python
+  #- name: If needed, install Python
+  #  raw: test -e /usr/bin/python || apt-get -y install python
