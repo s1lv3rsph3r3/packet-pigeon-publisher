@@ -6,7 +6,9 @@ const { formatFunctionName } = require('../../../../utility/format-utility');
 
 class MessageController {
   constructor() {
+    const {name} = MessageController;
     this.createMessage = this.createMessage.bind(this);
+    this.clazzName = name;
   }
 
   /**
@@ -16,10 +18,10 @@ class MessageController {
      * @returns {Promise<void>}
      */
   async createMessage(req, res) {
-    const message = `${MessageController.name}@${formatFunctionName(this.createMessage.name)}`;
+    const message = `${this.clazzName}@${formatFunctionName(this.createMessage.name)}`;
     const meta = {
       uuid: req.UUID,
-      clazz: MessageController.name,
+      clazz: this.clazzName,
       fn: formatFunctionName(this.createMessage.name),
     };
     logger.info(message, { ...meta, msg: 'Attempting to handle message request...', body: req.body });
