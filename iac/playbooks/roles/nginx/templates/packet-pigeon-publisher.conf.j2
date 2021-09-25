@@ -1,0 +1,10 @@
+server {
+    listen [::]:{{ http_port }} ipv6only=on;
+    listen {{ http_port }};
+
+    server_name {{ http_host }};
+
+    location / {
+        proxy_pass http://localhost:{{ upstream_port }}$request_uri;
+    }
+}

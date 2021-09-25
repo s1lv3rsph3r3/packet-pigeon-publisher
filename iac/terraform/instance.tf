@@ -19,20 +19,6 @@ resource "digitalocean_droplet" "instance" {
       "echo Hello!"
     ]
   }
-  provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' --private-key ${var.pvt_key_file} ../playbooks/unattended-upgrades.yml"
-  }
-  provisioner "remote-exec" {
-    inline = [
-      "export PATH=$PATH:/usr/bin",
-      # install nginx
-      "sudo apt-get update",
-      "sudo apt-get -y install nginx"
-    ]
-  }
-  provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' --private-key ${var.pvt_key_file} ../playbooks/server-setup.yml"
-  }
   provisioner "remote-exec" {
     inline = [
       "sudo fallocate -l 1G /swapfile",
@@ -41,6 +27,10 @@ resource "digitalocean_droplet" "instance" {
       "sudo swapon /swapfile"
     ]
   }
+  provisioner "local-exec" {
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' --private-key ${var.pvt_key_file} ../playbooks/server-setup.yml -e \"aws_access_key=${var.aws_access_key}\" -e \"aws_secret_key=${var.aws_secret_key}\" -e \"do_instance_ip=${self.ipv4_address}\""
+  }
+
 }
 
 resource "aws_s3_bucket" "state_bucket" {
