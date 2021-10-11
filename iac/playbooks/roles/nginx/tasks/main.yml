@@ -119,10 +119,10 @@
     json
     ANSWERS
 
-- name: Creates nginx ssl options
-  template:
-    src: "options-ssl-nginx.conf.j2"
-    dest: "/etc/letsencrypt/options-ssl-nginx.conf"
+#- name: Creates nginx ssl options
+#  template:
+#    src: "options-ssl-nginx.conf.j2"
+#    dest: "/etc/letsencrypt/options-ssl-nginx.conf"
 
 - name: Install system nginx config
   template:
