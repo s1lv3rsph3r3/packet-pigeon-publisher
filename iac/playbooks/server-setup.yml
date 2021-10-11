@@ -3,5 +3,7 @@
   become: true
   roles:
     - { role: setup, tags: ['setup'] }
-# Insert application setup between here and the nginx step
+
+    - { role: publisher, tags: ['publisher'] }
+
     - { role: nginx, tags: ['nginx', 'web', 'http'] }

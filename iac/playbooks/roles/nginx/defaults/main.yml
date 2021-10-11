@@ -2,4 +2,3 @@
 http_port: "80"
 https_port: "443"
 http_host: "{{ do_instance_ip }}"
-upstream_port: "3000"
