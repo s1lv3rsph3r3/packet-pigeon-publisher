@@ -2,6 +2,14 @@
 - name: Install acl
   shell: apt install acl
 
+- name: Make sure the remote app root exists and has the right permissions
+  file:
+    path: "{{ remote_www_root }}/{{ app_root_dir }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ remote_user }}"
+    group: "{{ remote_user }}"
+
 # TODO: This should use vars
 - name: Rsync application files to the remote server
   synchronize:
@@ -9,7 +17,7 @@
     dest: "{{ remote_www_root }}"
     rsync_opts:
       - "--no-motd"
-      - "--exclude=.git,tests"
+      - "--exclude=.git,vendor,tests,storage/logs/*,storage/framework/sessions/*,storage/framework/cache/*"
 
 - name: Set up .env file
   template:
