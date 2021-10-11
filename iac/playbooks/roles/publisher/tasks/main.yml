@@ -58,6 +58,8 @@
 
 - name: Start PM2
   command: "pm2 start index.js"
+  args:
+    chdir: "{{ remote_www_root }}/{{ app_root_dir }}"
   tags: ["pm2:start:index.js"]
 
 - name: Setup PM2 Systemd
