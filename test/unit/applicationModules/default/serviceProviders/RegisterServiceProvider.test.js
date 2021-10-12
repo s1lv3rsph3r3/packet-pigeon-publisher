@@ -6,13 +6,20 @@ const expectedSuccessMsg = 'User registered successfully';
 const expectedErrorMsg = 'Expected Error';
 const expectedError = new Error(expectedErrorMsg);
 
-const createUserMock = jest.fn()
-  .mockImplementationOnce(() => new Promise((resolve) => {
-    resolve(expectedResultSet);
-  }))
-  .mockImplementationOnce(() => new Promise((resolve, reject) => {
-    reject(expectedError);
-  }));
+const createUserMock = jest
+  .fn()
+  .mockImplementationOnce(
+    () =>
+      new Promise((resolve) => {
+        resolve(expectedResultSet);
+      }),
+  )
+  .mockImplementationOnce(
+    () =>
+      new Promise((resolve, reject) => {
+        reject(expectedError);
+      }),
+  );
 
 jest.doMock(
   '../../../../../applicationModules/default/dataProviders/RegisterDataProvider',
@@ -21,9 +28,7 @@ jest.doMock(
   }),
 );
 
-const registerServiceProvider = require(
-  '../../../../../application-modules/publisher/service/UserServiceProvider',
-);
+const registerServiceProvider = require('../../../../../application-modules/publisher/service/UserServiceProvider');
 
 describe('Test RegisterServiceProvider in default module...', () => {
   test('expect registerNewUser() to process successfully', async (done) => {
@@ -34,9 +39,9 @@ describe('Test RegisterServiceProvider in default module...', () => {
   });
   test('expect registerNewUser() to throw error', async (done) => {
     const userId = 1;
-    await expect(registerServiceProvider.registerNewUser(userId))
-      .rejects
-      .toThrowError(expectedError);
+    await expect(
+      registerServiceProvider.registerNewUser(userId),
+    ).rejects.toThrowError(expectedError);
     done();
   });
 });

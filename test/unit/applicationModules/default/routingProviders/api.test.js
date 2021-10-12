@@ -5,23 +5,33 @@ const expectedSuccessMsg = 'User registered successfully';
 const expectedSuccess = {
   message: expectedSuccessMsg,
 };
-const registerNewUserMock = jest.fn()
+const registerNewUserMock = jest
+  .fn()
   // Mock for test 1 - test ignored whilst middleware is implemented
   // .mockImplementationOnce(() => new Promise((resolve) => {
   //   resolve(expectedSuccess);
   // }))
   // Mock for test 2
-  .mockImplementationOnce(() => new Promise((resolve) => {
-    resolve(expectedSuccess);
-  }))
+  .mockImplementationOnce(
+    () =>
+      new Promise((resolve) => {
+        resolve(expectedSuccess);
+      }),
+  )
   // Mock for test 3
-  .mockImplementationOnce(() => new Promise((resolve, reject) => {
-    reject(expectedError);
-  }));
+  .mockImplementationOnce(
+    () =>
+      new Promise((resolve, reject) => {
+        reject(expectedError);
+      }),
+  );
 
-jest.doMock('../../../../../applicationModules/default/serviceProviders/RegisterServiceProvider', () => ({
-  registerNewUser: registerNewUserMock,
-}));
+jest.doMock(
+  '../../../../../applicationModules/default/serviceProviders/RegisterServiceProvider',
+  () => ({
+    registerNewUser: registerNewUserMock,
+  }),
+);
 const request = require('supertest');
 const expressApp = require('../../../../../app');
 const bodyParser = require('body-parser');
@@ -52,7 +62,8 @@ describe('Test api endpoints in default module...', () => {
         username: undefined,
         password: 'password',
         userId: 1,
-      }).set('Accept', 'application/json');
+      })
+      .set('Accept', 'application/json');
     expect(response.status).toBe(401);
     expect(response.message).toBe('Request not authorised');
     done();
@@ -66,10 +77,8 @@ describe('Test api endpoints in default module...', () => {
         userId: 1,
       })
       .set('Accept', 'application/json');
-    expect(response.status)
-      .toBe(200);
-    expect(response.body)
-      .toEqual(expectedSuccess);
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(expectedSuccess);
     done();
   });
   test('expect POST /api/v1/default/register-new-user to respond with error message', async (done) => {
@@ -85,8 +94,8 @@ describe('Test api endpoints in default module...', () => {
     expect(response.body.message).toBe(expectedErrorMsg);
     done();
   });
-    test.skip('expect a fail when running', async (done) => {
-        expect(true).toEqual(false);
-        done();
-    });
+  test.skip('expect a fail when running', async (done) => {
+    expect(true).toEqual(false);
+    done();
+  });
 });
