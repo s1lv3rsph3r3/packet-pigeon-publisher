@@ -31,14 +31,11 @@ class CustomMiddlewareProvider {
    */
   setUniqueReqId(req, res, next) {
     req.UUID = uuidv4();
-    logger.info(
-      `${this.clazzName}@${this.setUniqueReqId.name}`,
-      {
-        uuid: req.UUID,
-        clazz: this.clazzName,
-        fn: this.setUniqueReqId.name,
-      },
-    );
+    logger.info(`${this.clazzName}@${this.setUniqueReqId.name}`, {
+      uuid: req.UUID,
+      clazz: this.clazzName,
+      fn: this.setUniqueReqId.name,
+    });
     return next();
   }
 }

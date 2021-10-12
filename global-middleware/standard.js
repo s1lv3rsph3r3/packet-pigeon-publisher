@@ -7,11 +7,11 @@
  */
 const bodyParser = require('body-parser');
 const logger = require('../logger');
-const {formatFunctionName} = require('../utility/format-utility');
+const { formatFunctionName } = require('../utility/format-utility');
 
 class StandardMiddlewareProvider {
   constructor() {
-    const {name} = StandardMiddlewareProvider;
+    const { name } = StandardMiddlewareProvider;
     this.standardMiddleware = this.standardMiddleware.bind(this);
     this.clazzName = name;
   }
