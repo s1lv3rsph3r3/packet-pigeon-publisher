@@ -2,5 +2,5 @@
 # Initial Server Setup
 remote_user: sammy
 remote_www_root: /var/www
-app_root_dir: "packet-pigeon-publisher"
+app_root_dir: 'packet-pigeon-publisher'
 upstream_port: 3000

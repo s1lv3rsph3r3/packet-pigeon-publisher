@@ -13,15 +13,15 @@
 #    proto: tcp
 
 # CAUTION: This step should only be used during NON-PROD deployments
-- name: "UFW - Allow HTTP on port {{ http_port }}"
+- name: 'UFW - Allow HTTP on port {{ http_port }}'
   ufw:
     rule: allow
-    port: "{{ http_port }}"
+    port: '{{ http_port }}'
     proto: tcp
 
 - name: Removes "default" site
   file:
-    path: "/etc/nginx/sites-enabled/default"
+    path: '/etc/nginx/sites-enabled/default'
     state: absent
   notify: Reload Nginx
 
@@ -102,10 +102,10 @@
 - name: Ensure boto and boto3 modules are installed
   pip:
     name: ['boto3', 'botocore']
-  delegate_to: "{{ do_instance_ip }}"
+  delegate_to: '{{ do_instance_ip }}'
 
 - name: Install aws cli
-  apt:  name=awscli update_cache=yes state=latest
+  apt: name=awscli update_cache=yes state=latest
 
 - name: pip3 install upgrade
   shell: pip3 install --upgrade awscli
@@ -133,13 +133,13 @@
 # Nginx Configuration
 - name: Sets Nginx conf file
   template:
-    src: "packet-pigeon-publisher.conf.j2"
-    dest: "/etc/nginx/sites-available/{{ http_host }}"
+    src: 'packet-pigeon-publisher.conf.j2'
+    dest: '/etc/nginx/sites-available/{{ http_host }}'
 
 - name: Enables new site
   file:
-    src: "/etc/nginx/sites-available/{{ http_host }}"
-    dest: "/etc/nginx/sites-enabled/{{ http_host }}"
+    src: '/etc/nginx/sites-available/{{ http_host }}'
+    dest: '/etc/nginx/sites-enabled/{{ http_host }}'
     state: link
   notify: Restart Nginx
 
