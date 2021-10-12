@@ -8,6 +8,6 @@ const server = (function start() {
   return {
     startServer,
   };
-}());
+})();
 
 module.exports = { server };
