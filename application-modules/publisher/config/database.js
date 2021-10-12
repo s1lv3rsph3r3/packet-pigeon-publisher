@@ -1,8 +1,6 @@
 const environment = require('../environment');
 
-const {
-  dbHost, dbUsername, dbPassword, dbDatabase,
-} = environment.values();
+const { dbHost, dbUsername, dbPassword, dbDatabase } = environment.values();
 
 const config = {
   host: dbHost,
