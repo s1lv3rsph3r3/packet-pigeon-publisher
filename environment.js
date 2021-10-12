@@ -14,4 +14,4 @@ module.exports = (function start() {
   return {
     values,
   };
-}());
+})();
