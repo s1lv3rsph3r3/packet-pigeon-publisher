@@ -13,19 +13,19 @@ const printEndpoints = () => {
   const set = new Set();
   for (let index = 0; index < endpoints.length; index += 1) {
     // merge into unique array from endpoints[index].methods
-    (endpoints[index].methods).reduce((s, e) => s.add(e), set);
+    endpoints[index].methods.reduce((s, e) => s.add(e), set);
   }
   const header = [...partialHeader, ...[...set], ...extendedHeader];
   const table = new Table({ head: header });
   for (let index = 0; index < endpoints.length; index += 1) {
     const arr = [];
-    (endpoints[index].methods).forEach((e) => {
+    endpoints[index].methods.forEach((e) => {
       if (header.indexOf(e) !== -1) {
         arr.push(header.indexOf(e));
       }
     });
     const row = [];
-    row.push((endpoints[index].path).replace(/\\/g, ''));
+    row.push(endpoints[index].path.replace(/\\/g, ''));
     for (let i = 1; i < header.length; i += 1) {
       if (i !== header.length - 1) {
         if (arr.includes(i)) {
@@ -36,8 +36,13 @@ const printEndpoints = () => {
           row[i] = { content: colors.red('X'), hAlign: 'center' };
         }
       } else {
-        const middlewares = (endpoints[index]).middlewares.map((v) => formatFunctionName(v));
-        row[i] = { content: colors.blue(middlewares.toString()), hAlign: 'center' };
+        const middlewares = endpoints[index].middlewares.map((v) =>
+          formatFunctionName(v),
+        );
+        row[i] = {
+          content: colors.blue(middlewares.toString()),
+          hAlign: 'center',
+        };
       }
     }
     table.push(row);

@@ -5,7 +5,8 @@
  * @param functionName
  * @returns {T[]}
  */
-const formatFunctionName = (functionName) => functionName.split(' ').filter(((value) => value !== 'bound'));
+const formatFunctionName = (functionName) =>
+  functionName.split(' ').filter((value) => value !== 'bound');
 
 module.exports = {
   formatFunctionName,

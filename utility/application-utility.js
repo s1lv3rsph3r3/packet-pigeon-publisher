@@ -8,7 +8,7 @@ const { applicationUtils } = require('@s1lv3rsph3r3/metropolitan');
  */
 const startWebRouting = (expressApp) => {
   if (expressApp === null || expressApp === undefined) {
-    throw (new Error('Express application is not defined'));
+    throw new Error('Express application is not defined');
   }
   // Boot the routing modules defined in the config
   applicationUtils.bootWebRoutes(expressApp);
@@ -22,7 +22,7 @@ const startWebRouting = (expressApp) => {
  */
 const startApiRouting = (expressApp) => {
   if (expressApp === null || expressApp === undefined) {
-    throw (new Error('Express application is not defined'));
+    throw new Error('Express application is not defined');
   }
   applicationUtils.bootApiRoutes(expressApp);
 };
@@ -35,7 +35,7 @@ const startApiRouting = (expressApp) => {
  */
 const startEventRouting = (subscriber) => {
   if (subscriber === null || subscriber === undefined) {
-    throw (new Error('Subscriber is not defined'));
+    throw new Error('Subscriber is not defined');
   }
   applicationUtils.bootModuleEvents(subscriber);
 };
