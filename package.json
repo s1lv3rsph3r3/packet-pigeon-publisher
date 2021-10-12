@@ -35,6 +35,7 @@
     "test": "jest",
     "start": "node server.js",
     "prettier": "prettier -l ./",
+    "linter": "eslint . ",
     "publisher-db-migrate": "cd application-modules/publisher && node ../../node_modules/db-migrate/bin/db-migrate --migrations-dir ./db/mysql/migrations --config ./config/database.json"
   },
   "repository": {

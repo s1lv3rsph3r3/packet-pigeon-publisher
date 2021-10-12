@@ -32,8 +32,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Print something
-        run: echo Hello, world!
+      - name: Install modules
+      - run: npm ci
+      - name: Run linting check
+        run: npm run linter
 
   test:
     needs: [linting, prettify]
