@@ -13,14 +13,11 @@ class DeleteMiddlewareProvider {
   }
 
   exampleFunction(req, res, next) {
-    logger.info(
-      `${this.clazzName}@${this.exampleFunction.name}`,
-      {
-        uuid: req.UUID,
-        clazz: this.clazzName,
-        fn: this.exampleFunction.name,
-      },
-    );
+    logger.info(`${this.clazzName}@${this.exampleFunction.name}`, {
+      uuid: req.UUID,
+      clazz: this.clazzName,
+      fn: this.exampleFunction.name,
+    });
     // Run some checks on request
     if (req.body === null) {
       res.status(400).json({ message: 'failed delete middleware' });

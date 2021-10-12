@@ -14,14 +14,11 @@ class IndividualRouteMiddleware {
   }
 
   routeSpecMiddleware(req, res, next) {
-    logger.info(
-      `${this.clazzName}@${this.routeSpecMiddleware.name}`,
-      {
-        uuid: req.UUID,
-        clazz: this.clazzName,
-        fn: this.routeSpecMiddleware.name,
-      },
-    );
+    logger.info(`${this.clazzName}@${this.routeSpecMiddleware.name}`, {
+      uuid: req.UUID,
+      clazz: this.clazzName,
+      fn: this.routeSpecMiddleware.name,
+    });
     // Run some checks on your request
     if (req.body === null) {
       res.status(400).json({ message: 'failed spec route middleware' });

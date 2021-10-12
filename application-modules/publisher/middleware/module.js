@@ -23,34 +23,28 @@ class ModuleMiddlewareProvider {
    */
   generateUniqueRequestId(req, res, next) {
     req.UUID = uuidv4();
-    logger.info(
-      `${this.clazzName}@${this.generateUniqueRequestId.name}`,
-      {
-        uuid: req.UUID,
-        clazz: this.clazzName,
-        fn: this.generateUniqueRequestId.name,
-      },
-    );
+    logger.info(`${this.clazzName}@${this.generateUniqueRequestId.name}`, {
+      uuid: req.UUID,
+      clazz: this.clazzName,
+      fn: this.generateUniqueRequestId.name,
+    });
     next();
   }
 
   /**
-    * An example middleware function that can be used to
-    * immediately log all incoming requests for this (publisher)
-    * module.
-    * @param req
-    * @param res
-    * @param next
-    */
+   * An example middleware function that can be used to
+   * immediately log all incoming requests for this (publisher)
+   * module.
+   * @param req
+   * @param res
+   * @param next
+   */
   logRequest(req, res, next) {
-    logger.info(
-      `${this.clazzName}@${this.logRequest.name}`,
-      {
-        uuid: req.UUID,
-        clazz: this.clazzName,
-        fn: this.logRequest.name,
-      },
-    );
+    logger.info(`${this.clazzName}@${this.logRequest.name}`, {
+      uuid: req.UUID,
+      clazz: this.clazzName,
+      fn: this.logRequest.name,
+    });
     next();
   }
 }
