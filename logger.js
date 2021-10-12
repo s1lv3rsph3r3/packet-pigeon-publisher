@@ -10,7 +10,10 @@ const logger = winston.createLogger({
   ),
   defaultMeta: { service: 'publisher' },
   transports: [
-    new winston.transports.File({ filename: './logs/error.log', level: 'error' }),
+    new winston.transports.File({
+      filename: './logs/error.log',
+      level: 'error',
+    }),
     new winston.transports.File({ filename: './logs/combined.log' }),
   ],
 });
@@ -20,14 +23,16 @@ const logger = winston.createLogger({
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
 if (appDebug) {
-  logger.add(new winston.transports.Console({
-    format: winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.colorize(),
-      winston.format.simple(),
-    ),
-    timestamp: true,
-  }));
+  logger.add(
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.colorize(),
+        winston.format.simple(),
+      ),
+      timestamp: true,
+    }),
+  );
 }
 
 module.exports = logger;
