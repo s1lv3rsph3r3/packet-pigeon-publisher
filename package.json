@@ -27,7 +27,9 @@
   },
   "devDependencies": {
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.2.5",
     "prettier": "2.4.1"
   },
@@ -35,6 +37,7 @@
     "test": "jest",
     "start": "node server.js",
     "prettier": "prettier -l ./",
+    "prettier:dev": "prettier -c application-modules/publisher/environment.js",
     "linter": "eslint . ",
     "publisher-db-migrate": "cd application-modules/publisher && node ../../node_modules/db-migrate/bin/db-migrate --migrations-dir ./db/mysql/migrations --config ./config/database.json"
   },
