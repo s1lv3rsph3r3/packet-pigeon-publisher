@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: '14'
       - name: Install modules
-      - run: npm ci
+        run: npm ci
       - name: Run linting check
         run: npm run linter
 
