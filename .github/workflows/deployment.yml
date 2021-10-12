@@ -26,8 +26,19 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-  terraform:
+  test:
     needs: [build]
+    runs-on: ubuntu-20.04
+    name: Unit tests
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
+
+  terraform:
+    needs: [test, build]
     runs-on: ubuntu-20.04
     name: Setup terraform
     steps:
