@@ -1,8 +1,8 @@
 {
-  "main" : "bootloader.js",
+  "main": "bootloader.js",
   "install": "config/self/self.json",
-  "modules" : {
-    "publisher" : {
+  "modules": {
+    "publisher": {
       "slug": "publisher"
     }
   }
