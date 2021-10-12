@@ -11,19 +11,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  prettify:
-    runs-on: ubuntu-20.04
-    name: Prettify
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Install modules
-        run: npm ci
-      - name: Run prettier check
-        run: npm run prettier
-
   linting:
     runs-on: ubuntu-20.04
     name: Linting
@@ -38,7 +25,7 @@ jobs:
         run: npm run linter
 
   test:
-    needs: [linting, prettify]
+    needs: [linting]
     runs-on: ubuntu-20.04
     name: Unit tests
     steps:
